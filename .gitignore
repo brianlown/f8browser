@@ -1,0 +1,7 @@
+Scripts
+tests
+/pyvenv.cfg
+/pyproject.toml
+venv
+/f8browser/F8_ModuleTypes.xls
+/f8browser/makeUhiLookup.py

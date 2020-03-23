@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object id="mainWindow" class="ttk.Frame">
+    <property name="height">200</property>
+    <property name="padding">20</property>
+    <property name="width">200</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">1</property>
+    </layout>
+    <child>
+      <object id="shelfTreeFrame" class="ttk.Frame">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+        </layout>
+        <child>
+          <object id="shelfTree" class="ttk.Treeview">
+            <property name="selectmode">extended</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">1</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="shelfTreeScroll" class="ttk.Scrollbar">
+            <property name="orient">vertical</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">1</property>
+              <property name="sticky">ns</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object id="toolFrame" class="ttk.Frame">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+        </layout>
+        <child>
+          <object id="addrEntry" class="ttk.Entry">
+            <property name="textvariable">string:newIPAddr</property>
+            <property name="validatecommand">validateIPAddr</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="addrEntryLabel" class="ttk.Label">
+            <property name="text" translatable="yes">Enter Shelf IP:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object id="slotPopup" class="tk.Menu">
+    <property name="tearoff">false</property>
+    <child>
+      <object id="scpToSlot" class="tk.Menuitem.Command">
+        <property name="command">eventHandler</property>
+        <property name="command_id_arg">true</property>
+        <property name="label" translatable="yes">SCP</property>
+        <property name="state">normal</property>
+      </object>
+    </child>
+    <child>
+      <object id="sshToSlot" class="tk.Menuitem.Command">
+        <property name="command">eventHandler</property>
+        <property name="command_id_arg">true</property>
+        <property name="label" translatable="yes">SSH</property>
+      </object>
+    </child>
+    <child>
+      <object id="portSub" class="tk.Menuitem.Submenu">
+        <property name="label" translatable="yes">Port</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object id="addPort" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Enable</property>
+          </object>
+        </child>
+        <child>
+          <object id="delPort" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Disable</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object id="dteSub" class="tk.Menuitem.Submenu">
+        <property name="label" translatable="yes">DTE</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object id="dteCli" class="tk.Menuitem.Command">
+            <property name="command_id_arg">false</property>
+            <property name="label" translatable="yes">CLI</property>
+            <property name="state">disabled</property>
+          </object>
+        </child>
+        <child>
+          <object id="dteGui" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">GUI</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object id="shelfPopup" class="tk.Menu">
+    <property name="cursor">arrow</property>
+    <property name="font">TkDefaultFont</property>
+    <property name="relief">flat</property>
+    <property name="tearoff">false</property>
+    <child>
+      <object id="httpToGui" class="tk.Menuitem.Command">
+        <property name="command">eventHandler</property>
+        <property name="command_id_arg">true</property>
+        <property name="label" translatable="yes">HTTP</property>
+      </object>
+    </child>
+    <child>
+      <object id="scpToShelf" class="tk.Menuitem.Command">
+        <property name="command">eventHandler</property>
+        <property name="command_id_arg">true</property>
+        <property name="label" translatable="yes">SCP</property>
+      </object>
+    </child>
+    <child>
+      <object id="shelfSSH" class="tk.Menuitem.Submenu">
+        <property name="label" translatable="yes">SSH</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object id="sshToCli" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">CLI</property>
+          </object>
+        </child>
+        <child>
+          <object id="sshToDebug" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Debug</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object id="debugPortSub" class="tk.Menuitem.Submenu">
+        <property name="label" translatable="yes">Debug Port</property>
+        <property name="tearoff">false</property>
+        <child>
+          <object id="enableDebug" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
+            <property name="label" translatable="yes">Enable</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object id="deleteNode" class="tk.Menuitem.Command">
+        <property name="command">eventHandler</property>
+        <property name="command_id_arg">true</property>
+        <property name="label" translatable="yes">Delete</property>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -1,2 +1,7 @@
+click<8.0.0,>=7.1.1
+dtegui@ git+https://github.com/brianlown/dtegui.git@master
+ipaddress<2.0.0,>=1.0.23
+paramiko<3.0.0,>=2.7.1
 pygubu<0.10.0,>=0.9.8
-sshexpect<0.3.0,>=0.2.0
+pynput<2.0.0,>=1.6.8
+sshexpect@ git+https://github.com/brianlown/sshexpect.git@master

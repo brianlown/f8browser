@@ -392,7 +392,7 @@
 			"Name" :"AC1200",
 			"Field" : "NTWK_CD_RNG_MON_AVE_PM_LN_0_PS_PER_NM"
 			},
-		"Codec" : "2COMP32",
+		"Codec" : "SIGNED32",
 		"InitGroup" : "Start",
 		"PollGroup" : "AC1200 PMs"
 		},
@@ -404,7 +404,7 @@
 			"Name" :"AC1200",
 			"Field" : "NTWK_CD_RNG_MON_AVE_PM_LN_1_PS_PER_NM"
 			},
-		"Codec" : "2COMP32",
+		"Codec" : "SIGNED32",
 		"InitGroup" : "Start",
 		"PollGroup" : "AC1200 PMs"
 		},
@@ -512,7 +512,7 @@
 			"Name" :"AC1200 Address",
 			"Address" : "0x2684"
 			},
-		"Codec" : "2COMP16",
+		"Codec" : "SIGNED16",
 		"InitGroup" : "Start",
 		"PollGroup" : "AC1200 PMs"
 		},
@@ -524,7 +524,7 @@
 			"Name" :"AC1200 Address",
 			"Field" : "0x3684"
 			},
-		"Codec" : "2COMP16",
+		"Codec" : "SIGNED16",
 		"InitGroup" : "Start",
 		"PollGroup" : "AC1200 PMs"
 		},
@@ -697,7 +697,7 @@
 	{
 	"DB_MULT_10" :
 		{
-		"Decode" : "int(val[0],16)/10"
+		"Decode" : "signed(val[0],16)/10"
 		},
 	"HEX2INT" :
 		{
@@ -707,13 +707,13 @@
 		{
 		"Decode" : "float_e(int(val[0],16))"
 		},
-	"2COMP16" :
+	"SIGNED16" :
 		{
-		"Decode" : "twos_complement(val[0],16)"
+		"Decode" : "signed(val[0],16)"
 		},
-	"2COMP32" :
+	"SIGNED32" :
 		{
-		"Decode" : "twos_complement(val[0],32)"
+		"Decode" : "signed(val[0],32)"
 		}
 	}
 }

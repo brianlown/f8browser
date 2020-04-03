@@ -47,7 +47,7 @@ class F8BrowserGUI:
         self.builder = builder = pygubu.Builder()
 
         #2: Load an ui file
-        builder.add_from_file('f8browser.ui')
+        builder.add_from_file(CURRENT_DIR+'f8browser.ui')
   
         #3: Create the widget using a master as parent
         self.mainwindow = builder.get_object('mainWindow', master)

@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: f8browser
+Version: 0.1.0
+Summary: Browsing utility for F8 shelves and modules
+Home-page: UNKNOWN
+Author: brianlown
+Author-email: 62453448+brianlown@users.noreply.github.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.8,<4.0

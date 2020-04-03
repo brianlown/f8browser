@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <interface>
-  <object id="Frame_12" class="ttk.Frame">
+  <object id="mainFrame" class="ttk.Frame">
     <layout>
       <property name="column">0</property>
       <property name="propagate">True</property>
       <property name="row">0</property>
     </layout>
     <child>
-      <object id="Frame_13" class="ttk.Frame">
+      <object id="statusFrame" class="ttk.Frame">
         <property name="height">200</property>
         <property name="width">200</property>
         <layout>
@@ -17,7 +17,7 @@
           <property name="sticky">w</property>
         </layout>
         <child>
-          <object id="Labelframe_12" class="ttk.Labelframe">
+          <object id="locationFrame" class="ttk.Labelframe">
             <property name="height">200</property>
             <property name="text" translatable="yes">Location</property>
             <property name="width">200</property>
@@ -28,7 +28,7 @@
               <property name="sticky">w</property>
             </layout>
             <child>
-              <object id="Frame_52" class="ttk.Frame">
+              <object id="slotFrame" class="ttk.Frame">
                 <property name="height">200</property>
                 <property name="relief">sunken</property>
                 <property name="width">199</property>
@@ -62,7 +62,7 @@
               </object>
             </child>
             <child>
-              <object id="Frame_64" class="ttk.Frame">
+              <object id="addressFrame" class="ttk.Frame">
                 <property name="height">200</property>
                 <property name="width">200</property>
                 <layout>
@@ -96,7 +96,7 @@
           </object>
         </child>
         <child>
-          <object id="Labelframe_14" class="ttk.Labelframe">
+          <object id="pollingFrame" class="ttk.Labelframe">
             <property name="height">200</property>
             <property name="text" translatable="yes">Polling</property>
             <property name="width">200</property>
@@ -107,7 +107,7 @@
               <property name="sticky">w</property>
             </layout>
             <child>
-              <object id="Checkbutton_7" class="ttk.Checkbutton">
+              <object id="pollingCheck" class="ttk.Checkbutton">
                 <property name="offvalue">0</property>
                 <property name="onvalue">1</property>
                 <property name="takefocus">false</property>
@@ -125,7 +125,7 @@
       </object>
     </child>
     <child>
-      <object id="Notebook_1" class="ttk.Notebook">
+      <object id="mainNotebook" class="ttk.Notebook">
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>

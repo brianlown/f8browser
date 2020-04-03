@@ -2,9 +2,15 @@
 "General" :
 	{
 		"uiFile" : "qflex.ui",
-		"icoFile" : "index.ico",
+		"icoFile" : "adva.ico",
 		"winTitle" : "Qflex DTE Dashboard",
-		"topFrame" : "Frame_12"
+		"topFrame" : "mainFrame",
+		"initTab" : "System Monitors",
+		"mainNotebook" : "mainNotebook",
+		"dteDirectory" : 
+			{
+			"13" : "/debug/aosFwHal/adva.hbmcard.qflex"
+			}
 	},
 
 "Variables" :
@@ -347,7 +353,7 @@
 		},
 	"polling_enable" :
 		{
-		"Objects": "Checkbutton_7",
+		"Objects": "pollingCheck",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "command=self.on_polling_changed,variable=variable"	

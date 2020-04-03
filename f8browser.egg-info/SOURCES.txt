@@ -1,0 +1,14 @@
+README.rst
+setup.py
+f8browser/__init__.py
+f8browser/config.json
+f8browser/f8browser.py
+f8browser/f8browser.ui
+f8browser.egg-info/PKG-INFO
+f8browser.egg-info/SOURCES.txt
+f8browser.egg-info/dependency_links.txt
+f8browser.egg-info/requires.txt
+f8browser.egg-info/top_level.txt
+f8browser/lib/adva.ico
+f8browser/lib/qflex.json
+f8browser/lib/qflex.ui

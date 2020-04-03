@@ -1,0 +1,719 @@
+{
+"General" :
+	{
+		"uiFile" : "tflex.ui",
+		"icoFile" : "adva.ico",
+		"winTitle" : "Tflex DTE Dashboard",
+		"topFrame" : "mainFrame",
+		"initTab" : "AC1200 PMs",
+		"mainNotebook" : "mainNotebook",
+		"dteDirectory" : {
+			"94":"/debug/aosFwHal/adva.hbmcard.mp2d12cta",
+			"116":"/debug/aosFwHal/adva.hbmcard.mp2d12ct"
+		}
+	},
+
+"Variables" :
+	{
+	"polling_enable" :
+		{
+		"Objects": "pollingCheck",
+		"VarType" : "integer",
+		"VarInit" : 0,
+		"Config" : "command=self.on_polling_changed,variable=variable"	
+		},
+	"q_est_avg_pm_1" :
+		{
+		"Objects" :["Entry_1"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"q_est_avg_pm_2" :
+		{
+		"Objects" :["Entry_2"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"q_margin_avg_pm_1" :
+		{
+		"Objects" :["Entry_3"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"q_margin_avg_pm_2" :
+		{
+		"Objects" :["Entry_4"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"snr_mod_a_pm_1" :
+		{
+		"Objects" :["Entry_5"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"snr_mod_a_pm_2" :
+		{
+		"Objects" :["Entry_6"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"snr_mod_b_pm_1" :
+		{
+		"Objects" :["Entry_7"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"snr_mod_b_pm_2" :
+		{
+		"Objects" :["Entry_8"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"osnr_est_avg_pm_1" :
+		{
+		"Objects" :["Entry_9"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"osnr_est_avg_pm_2" :
+		{
+		"Objects" :["Entry_10"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"cd_mon_avg_pm_1" :
+		{
+		"Objects" :["Entry_11"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"cd_mon_avg_pm_2" :
+		{
+		"Objects" :["Entry_12"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"dgd_mon_avg_pm_1" :
+		{
+		"Objects" :["Entry_13"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"dgd_mon_avg_pm_2" :
+		{
+		"Objects" :["Entry_14"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"sopmd_mon_avg_pm_1" :
+		{
+		"Objects" :["Entry_15"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"sopmd_mon_avg_pm_2" :
+		{
+		"Objects" :["Entry_16"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"pdl_mon_avg_pm_1" :
+		{
+		"Objects" :["Entry_17"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"pdl_mon_avg_pm_2" :
+		{
+		"Objects" :["Entry_18"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"sop_chg_avg_pm_1" :
+		{
+		"Objects" :["Entry_19"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"sop_chg_avg_pm_2" :
+		{
+		"Objects" :["Entry_20"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"frq_off_avg_pm_1" :
+		{
+		"Objects" :["Entry_21"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"frq_off_avg_pm_2" :
+		{
+		"Objects" :["Entry_22"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_cur_1" :
+		{
+		"Objects" :["Entry_23"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_cur_2" :
+		{
+		"Objects" :["Entry_24"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_avg_1" :
+		{
+		"Objects" :["Entry_25"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_avg_2" :
+		{
+		"Objects" :["Entry_26"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_min_1" :
+		{
+		"Objects" :["Entry_27"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_min_2" :
+		{
+		"Objects" :["Entry_28"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_max_1" :
+		{
+		"Objects" :["Entry_29"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"ber_max_2" :
+		{
+		"Objects" :["Entry_30"],
+		"VarType" : "string",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"fec_cur_1" :
+		{
+		"Objects" :["Entry_31"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"fec_cur_2" :
+		{
+		"Objects" :["Entry_32"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"fec_acc_1" :
+		{
+		"Objects" :["Entry_33"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		},
+	"fec_acc_2" :
+		{
+		"Objects" :["Entry_34"],
+		"VarType" : "double",
+		"VarInit" : "0",
+		"Config" : ["textvariable=variable,justify='center'"]
+		}
+	},
+	
+"Commands" :
+	{
+	"q_est_avg_pm_1" :
+		{
+		"Var" : "q_est_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_Q_RNG_MON_AVE_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"q_est_avg_pm_2" :
+		{
+		"Var" : "q_est_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_Q_RNG_MON_AVE_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"q_margin_avg_pm_1" :
+		{
+		"Var" : "q_margin_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_Q_MARGIN_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"q_margin_avg_pm_2" :
+		{
+		"Var" : "q_margin_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_Q_MARGIN_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"snr_mod_a_pm_1" :
+		{
+		"Var" : "snr_mod_a_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_MOD_A_SNR_RNG_MON_AVE_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"snr_mod_a_pm_2" :
+		{
+		"Var" : "snr_mod_a_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_MOD_A_SNR_RNG_MON_AVE_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"snr_mod_b_pm_1" :
+		{
+		"Var" : "snr_mod_b_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_MOD_B_SNR_RNG_MON_AVE_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"snr_mod_b_pm_2" :
+		{
+		"Var" : "snr_mod_b_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_MOD_B_SNR_RNG_MON_AVE_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"osnr_est_avg_pm_1" :
+		{
+		"Var" : "osnr_est_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_OSNR_RNG_MON_AVE_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"osnr_est_avg_pm_2" :
+		{
+		"Var" : "osnr_est_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_OSNR_RNG_MON_AVE_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"cd_mon_avg_pm_1" :
+		{
+		"Var" : "cd_mon_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_CD_RNG_MON_AVE_PM_LN_0_PS_PER_NM"
+			},
+		"Codec" : "2COMP32",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"cd_mon_avg_pm_2" :
+		{
+		"Var" : "cd_mon_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_CD_RNG_MON_AVE_PM_LN_1_PS_PER_NM"
+			},
+		"Codec" : "2COMP32",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"dgd_mon_avg_pm_1" :
+		{
+		"Var" : "dgd_mon_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_DIFF_GRP_DLY_RNG_MON_AVE_PM_LN_0_PS"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"dgd_mon_avg_pm_2" :
+		{
+		"Var" : "dgd_mon_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_DIFF_GRP_DLY_RNG_MON_AVE_PM_LN_1_PS"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"sopmd_mon_avg_pm_1" :
+		{
+		"Var" : "sopmd_mon_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_SOPMD_RNG_MON_AVE_PM_LN_0_PS_SQRD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"sopmd_mon_avg_pm_2" :
+		{
+		"Var" : "sopmd_mon_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_SOPMD_RNG_MON_AVE_PM_LN_1_PS_SQRD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"pdl_mon_avg_pm_1" :
+		{
+		"Var" : "pdl_mon_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_PDL_RNG_MON_AVE_PM_LN_0_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"pdl_mon_avg_pm_2" :
+		{
+		"Var" : "pdl_mon_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_PDL_RNG_MON_AVE_PM_LN_1_DB_MULT_10"
+			},
+		"Codec" : "DB_MULT_10",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"sop_chg_avg_pm_1" :
+		{
+		"Var" : "sop_chg_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_SOP_CHG_RATE_RNG_MON_AVE_PM_LN_0_RADS_PER_SEC"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"sop_chg_avg_pm_2" :
+		{
+		"Var" : "sop_chg_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_SOP_CHG_RATE_RNG_MON_AVE_PM_LN_1_RADS_PER_SEC"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"frq_off_avg_pm_1" :
+		{
+		"Var" : "frq_off_avg_pm_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200 Address",
+			"Address" : "0x2684"
+			},
+		"Codec" : "2COMP16",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"frq_off_avg_pm_2" :
+		{
+		"Var" : "frq_off_avg_pm_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200 Address",
+			"Field" : "0x3684"
+			},
+		"Codec" : "2COMP16",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 PMs"
+		},
+	"ber_cur_1" :
+		{
+		"Var" : "ber_cur_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_CUR_VAL_LN_0_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_cur_2" :
+		{
+		"Var" : "ber_cur_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_CUR_VAL_LN_1_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_avg_1" :
+		{
+		"Var" : "ber_avg_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_AVE_PM_LN_0_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_avg_2" :
+		{
+		"Var" : "ber_avg_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_AVE_PM_LN_1_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_min_1" :
+		{
+		"Var" : "ber_min_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_MIN_PM_LN_0_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_min_2" :
+		{
+		"Var" : "ber_min_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_MIN_PM_LN_1_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_max_1" :
+		{
+		"Var" : "ber_max_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_MAX_PM_LN_0_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"ber_max_2" :
+		{
+		"Var" : "ber_max_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_BER_RNG_MON_MAX_PM_LN_1_FLOAT"
+			},
+		"Codec" : "FLOAT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"fec_cur_1" :
+		{
+		"Var" : "fec_cur_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_FEC_CUR_UNCORR_CB_CNT_LN_0_WORD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"fec_cur_2" :
+		{
+		"Var" : "fec_cur_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_FEC_CUR_UNCORR_CB_CNT_LN_1_WORD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"fec_acc_1" :
+		{
+		"Var" : "fec_acc_1",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_FEC_UNCORR_CB_CNT_PM_LN_0_WORD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		},
+	"fec_acc_2" :
+		{
+		"Var" : "fec_acc_2",
+		"Macro" : 
+			{
+			"Name" :"AC1200",
+			"Field" : "NTWK_FEC_UNCORR_CB_CNT_PM_LN_1_WORD"
+			},
+		"Codec" : "HEX2INT",
+		"InitGroup" : "Start",
+		"PollGroup" : "AC1200 BER"
+		}
+		
+	},
+		
+"Macros" :
+	{
+	"AC1200" :
+		{
+		"Read" : "ac1200 0 readReq <Field>",
+		"Splitchar" : "|",
+		"Trigger"   : "equals",
+		"Location"   : [1,2]
+		},
+	"AC1200 Address" :
+		{
+		"Read" : "ac1200 0 read <Address>",
+		"Splitchar" : "|",
+		"Trigger"   : "contains",
+		"Location"   : [1,2]
+		}
+	},
+	
+"Codecs" :
+	{
+	"DB_MULT_10" :
+		{
+		"Decode" : "int(val[0],16)/10"
+		},
+	"HEX2INT" :
+		{
+		"Decode" : "int(val[0],16)"
+		},
+	"FLOAT" :
+		{
+		"Decode" : "float_e(int(val[0],16))"
+		},
+	"2COMP16" :
+		{
+		"Decode" : "twos_complement(val[0],16)"
+		},
+	"2COMP32" :
+		{
+		"Decode" : "twos_complement(val[0],32)"
+		}
+	}
+}

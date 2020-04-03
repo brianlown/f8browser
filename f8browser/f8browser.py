@@ -10,6 +10,11 @@ import subprocess
 import webbrowser
 import ipaddress
 import socket
+import ctypes
+import time
+import click
+from ctypes import wintypes
+from pynput.keyboard import Key,Controller
 
 CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))+"\\"
 LIB_DIR = CURRENT_DIR+"lib\\"
@@ -21,14 +26,22 @@ DBG_USERNAME = "debug"
 CLI_PASSWORD = "CHGME.1a"
 SSH_DBG = 614
 SSH_CLI = 22
-ECM_DTE_PROMPT = 'root@ecm>'
+ECM_DTE_PROMPT = ['root@ecm>','root@tecm>']
 LINUX_PROMPT = "~ # "
 CLI_PROMPT = 'admin@FSP3000C> '
 DBG_PROMPT = 'debug@FSP3000C> '
 SSH_TIMEOUT = 5
 
+EnumWindows = ctypes.windll.user32.EnumWindows
+EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
+GetWindowText = ctypes.windll.user32.GetWindowTextW
+GetWindowTextLength = ctypes.windll.user32.GetWindowTextLengthW
+IsWindowVisible = ctypes.windll.user32.IsWindowVisible
+IsWindowEnabled = ctypes.windll.user32.IsWindowEnabled
+SetForegroundWindow = ctypes.windll.user32.SetForegroundWindow
+
 class F8BrowserGUI:
-    def __init__(self, master):
+    def __init__(self, master,debug=False):
 
         #1: Create a builder
         self.builder = builder = pygubu.Builder()
@@ -40,12 +53,13 @@ class F8BrowserGUI:
         self.mainwindow = builder.get_object('mainWindow', master)
         self.master=master
         master.title("F8 Browser")
-        master.iconbitmap(CURRENT_DIR+"\\"+"index.ico")
+        master.iconbitmap(LIB_DIR+"adva.ico")
         self.newIPAddr = builder.tkvariables.__getitem__('newIPAddr')
+        #self.ahk = AHK()
 
         shelfTree = self.shelfTree = builder.get_object('shelfTree')        
         self.treeScroll = builder.get_object('shelfTreeScroll')
-        self.shelfTree.configure(yscrollcommand=self.treeScroll.set)
+        shelfTree.configure(yscrollcommand=self.treeScroll.set)
         self.treeScroll.configure(command=self.shelfTree.yview)
         master.bind("<Button-3>",self.popup)
         master.bind("<Return>",self.onAddrAdded)
@@ -54,12 +68,14 @@ class F8BrowserGUI:
         with open(CURRENT_DIR+CONFIG_JSON) as f:
             self.configDict = json.load(f)
 
-        shelfTree['columns'] = ('slot','cuhi','ipv6','port')
+        shelfTree['columns'] = ('slot','cuhi','ipv6','port')#,'group')
+        #shelfTree.column('group', width=40, anchor='center')
         shelfTree.column('port', width=40, anchor='center')
         shelfTree.column('slot', width=40, anchor='center')
         shelfTree.column('cuhi', width=40, anchor='center')
         shelfTree.column('ipv6', width=200, anchor='center')
         shelfTree.column('#0', width=150, anchor='center')
+        #shelfTree.heading('group',text='Group',anchor='center')
         shelfTree.heading('port',text='Port',anchor='center')
         shelfTree.heading('slot',text='Slot',anchor='center')
         shelfTree.heading('cuhi',text='CUHI',anchor='center')
@@ -71,17 +87,24 @@ class F8BrowserGUI:
         shelfTree.bind("<<TreeviewOpen>>",self.onTreeviewOpened)
         self.ssh=None
         
-        self.selectedId = ""
-        
+        self.selection = ()
+        self.debug = debug
         self.slotPopup = builder.get_object('slotPopup')
         self.shelfPopup = builder.get_object('shelfPopup')
         self.portSub = builder.get_object('portSub')
         self.debugPortSub = builder.get_object('debugPortSub')
-        webbrowser.register('firefox',None,webbrowser.BackgroundBrowser(self.configDict["Web Browsers"]["Firefox"]["Path"]))
+        
+        self.keyboard = Controller()
+        
+        for browser in self.configDict["Web Browsers"]:  
+            webbrowser.register(browser,None,webbrowser.BackgroundBrowser(self.configDict["Web Browsers"][browser]["Path"]))
 
         builder.connect_callbacks(self)
         
+        self.groupDict = {}
+        
     def ssh_spawn(self,ip,username,port,password=""):
+        if self.debug: print("SSH spawn:",ip,username,port,password)
         try:
             ssh = sshexpect.spawn(ipaddress=ip,username=username,password=password,port=port,timeout=SSH_TIMEOUT)
         except:
@@ -137,61 +160,123 @@ class F8BrowserGUI:
             self.shelfTree.set(node,'port',SSH_DBG)
         
     def eventHandler(self,objID):
-        if not self.selectedId:
+        
+        if not self.selection:
             return
+           
         shelfTree=self.shelfTree
-        if shelfTree.parent(self.selectedId):
-            slotid = self.selectedId
-            nodeid = shelfTree.parent(slotid)
-            slot= shelfTree.item(slotid)['values'][0]
-            ipv6= shelfTree.item(slotid)['values'][2]
-            port = slot+1000
-        else:
-            nodeid = self.selectedId
-            if objID=="sshToDebug":
-                port=SSH_DBG
+        configDict=self.configDict
+        wb = None
+        for item in self.selection:
+
+            if self.hasParent(item):
+                slotid = item
+                nodeid = shelfTree.parent(slotid)
+                slot= shelfTree.item(slotid)['values'][0]
+                cuhi= shelfTree.item(slotid)['values'][1]
+                ipv6= shelfTree.item(slotid)['values'][2]
+                port = slot+1000
             else:
-                port=SSH_CLI
-        shelfip = shelfTree.item(nodeid)['text']
-   
-        if objID=="deleteNode":
-            shelfTree.delete(nodeid)
-            self.configDict['knownShelfIP'].remove(shelfip)
-            self.saveConfig()
-            return
+                nodeid = item
+                slot = ""
+                if objID=="sshToCli":
+                    port=SSH_CLI
+                else:
+                    port=SSH_DBG
+            shelfip = shelfTree.item(nodeid)['text']
+    
+            if objID=="deleteNode":
+                shelfTree.delete(nodeid)
+                configDict['knownShelfIP'].remove(shelfip)
+                self.saveConfig()
+                continue
+                
+            if objID =="delPort":
+                self.delPortForward(shelfip,port,slotid)
+                continue
             
-        if objID =="delPort":
-            self.delPortForward(shelfip,port,slotid)
+            if objID=="httpToGui":
+                browser = configDict["General"]["Browser"]
+                if not wb:
+                    wb=webbrowser.get(configDict["Web Browsers"][browser]["Path"])
+                    time.sleep(1)
+                wb.open_new_tab(shelfip)
+                continue
+                
+            if objID=="enableDebug":
+                self.enableDebug(shelfip,nodeid)
+                continue
+            
+            if port > 1000:
+                self.addPortForward(shelfip,port,ipv6,slotid)
+                
+            if objID == "addPort": continue
+            
+            if objID[:3]=="ssh":
+                
+                path=configDict["SSH Clients"]["Putty"]["Path"]
+                if objID == "sshToCli":
+                    pargs=[path,"-ssh","-P",str(port),"admin@"+shelfip,"-pw","CHGME.1a"]
+                    title = shelfip + " - PuTTY"
+                else:   
+                    title = shelfip + " Slot "+str(slot)
+                    pargs=[path,"-ssh","-P",str(port),"root@"+shelfip,"-loghost",title]
+                    title = title + " - PuTTY"
+                
+                script = []
+                if objID == "sshToDTE":
+                    script = configDict["Scripts"]["Start DTE"]
+                
+                self.spawnWindowsProgram(pargs,title,script=script)
+    
+                continue
+                
+            if objID[:3]=="scp":
+                path=configDict["SCP Clients"]["WinSCP"]["Path"]
+                pargs=[path,"root@"+shelfip+":"+str(port),"/sessionname="+shelfip+" Slot "+str(slot)]
+                
+                self.spawnWindowsProgram(pargs,"WinSCP",delayAfterOpen=1)
+                continue
+                
+            if objID == "dteGui":
+                cuhi = str(shelfTree.item(slotid)['values'][1])
+                if cuhi in configDict["GUI Config"].keys():
+                    guiConfig=configDict["GUI Config"][cuhi]
+                    top=tk.Toplevel(self.master)
+                    dg.dtegui(top,shelfip,slot,cuhi,ipv6,LIB_DIR+guiConfig,debug=False)
+                    continue
+                mb = messagebox.showerror(title='Error',message='No GUI config for CUHI:{}.'.format(cuhi))
+                continue
+            mb = messagebox.showerror(title='Error',message='No action found for menu command!')
             return
         
-        if objID=="httpToGui":
-            wb=webbrowser.get(self.configDict["Web Browsers"]["Firefox"]["Path"])
-            wb.open_new_tab(shelfip)
-            return
+    def spawnWindowsProgram(self,pargs,texpected,delayAfterOpen = 0.5,script=[]):
+    
+        p = subprocess.Popen(pargs)      
+        time.sleep(delayAfterOpen)  
+        h =  get_hwnds_for_pid (p.pid)           
+        if h==[]: return False     
+        t= get_title_for_hwnd(h[0])
+       
+        if not texpected in t:
+            for timeout in range(60):
+                time.sleep(0.5)
+                h =  get_hwnds_for_pid (p.pid) 
+                if h==[]: return False
+                t= get_title_for_hwnd(h[0])
+                if texpected in t:
+                    time.sleep(delayAfterOpen)
+                    break
+            if timeout == 59:
+                print ("Timeout waiting for user action on window!")
+                return False
+                
+        if script != []:
+            SetForegroundWindow(h[0])
+            keytext = '\n'.join(script)+'\n'
+            self.keyboard.type(keytext)
             
-        if objID=="enableDebug":
-            self.enableDebug(shelfip,nodeid)
-            return
-        
-        if port > 1000:
-            self.addPortForward(shelfip,port,ipv6,slotid)
-            
-        if objID == "addPort": return
-        
-        if objID[:3]=="ssh":
-            path=self.configDict["SSH Clients"]["Putty"]["Path"]
-            if objID == "sshToCli":
-                subprocess.Popen([path,"-ssh","-P",str(port),"admin@"+shelfip,"-pw","CHGME.1a"])
-            else:
-                subprocess.Popen([path,"-ssh","-P",str(port),"root@"+shelfip])
-            
-        elif objID[:3]=="scp":
-            path=self.configDict["SCP Clients"]["WinSCP"]["Path"]
-            subprocess.Popen([path,"root@"+shelfip+":"+str(port)])#+"/opt/adva/aos/lib/firmware/"])
-            
-        elif objID == "dteGui":
-            self.guiThreads.append(None)
-            self.spawn_gui(self.guiThreads[-1],guiThread,shelfip,slot,ipv6,LIB_DIR+"qflex.json")
+        return True 
         
     def addPortForward(self,shelfip,port,ipv6,slotid):
         try:
@@ -204,9 +289,7 @@ class F8BrowserGUI:
             return
         
     def enableDebug(self,ip,nodeid):
-        script = ["execute debug-system exec-cmd cmd \“/shell/enable-ssh\”",
-                  "execute debug-system exec-cmd cmd \“/shell/enable-ssh\”",
-                  "execute debug-system exec-cmd cmd \“/shell/cleanup\”"]
+        script = configDict["Scripts"]["Enable Debug"]
         try:
             ssh = self.ssh_spawn(shelfip,CLI_USERNAME,SSH_CLI,password=CLI_PASSWORD)
             ssh.sendln("set security user debug role Debug new-password "+CLI_PASSWORD)
@@ -244,6 +327,7 @@ class F8BrowserGUI:
         node = self.shelfTree.selection()
         shelfip = self.shelfTree.item(node)['text']
         items = self.shelfTree.get_children(node)
+        if self.debug: print("Treeview Opened:",node,shelfip,items)
         try:
             portlist,slotlist =self.getShelfTreeInfo(shelfip)
         except:
@@ -256,7 +340,7 @@ class F8BrowserGUI:
             port = str(int(slot[1]) + 1000)
             if not port in portlist:
                 port = ""
-            if modName[:3] != "ECM":
+            if not "ECM" in modName:
                 self.shelfTree.insert(node,'end',text=modName,values=(slot[1],slot[0],slot[2],port))
                 
     def delPortForward(self,shelfip,port,slotid):
@@ -270,41 +354,44 @@ class F8BrowserGUI:
         except:
             return
         
-    def spawn_gui(self,var,gui_thread,ipaddr,slot,ipv6,json_file):
-        if var!=None and var.isAlive()==True:
-            return
-        var = gui_thread(self,ipaddr,slot,ipv6,json_file)
-        var.start()
-    
-    def gui_handler(self,ipaddr,slot,ipv6,json_file):
-        top=tk.Toplevel(self.master)
-        gui = dg.dtegui(top,ipaddr,slot,ipv6,json_file)
-        
     def popup(self,event):
         iid = self.shelfTree.identify_row(event.y)
-        if iid:
-            self.selectedId = iid
+        if not iid: return
+        selection = self.shelfTree.selection()
+        if len(selection) <= 1 :
             self.shelfTree.selection_set(iid)
-            if self.shelfTree.parent(iid):
-                if self.shelfTree.item(iid)['values'][3] == "":
-                    self.portSub.entryconfig(1,state="disabled")
-                    self.portSub.entryconfig(0,state="normal")
-                else:    
-                    self.portSub.entryconfig(1,state="normal")
-                    self.portSub.entryconfig(0,state="disabled")
-                try:
-                    self.slotPopup.tk_popup(event.x_root, event.y_root, 0)
-                finally:
-                    self.slotPopup.grab_release()
+            selection = self.shelfTree.selection()
+        else:
+            compare = self.hasParent(selection[0])
+            for idx in range(1,len(selection)):
+                if self.hasParent(selection[idx])!=compare:
+                    return
+        self.selection = selection
+        if self.hasParent(selection[0]):
+            if self.shelfTree.item(iid)['values'][3] == "":
+                self.portSub.entryconfig(1,state="disabled")
+                self.portSub.entryconfig(0,state="normal")
+            else:    
+                self.portSub.entryconfig(1,state="normal")
+                self.portSub.entryconfig(0,state="disabled")
+            try:
+                self.slotPopup.tk_popup(event.x_root, event.y_root, 0)
+            finally:
+                self.slotPopup.grab_release()
+        else:
+            if self.shelfTree.item(iid)['values'][3] == "":
+                self.debugPortSub.entryconfig(0,state="normal")
             else:
-                if self.shelfTree.item(iid)['values'][3] == "":
-                    self.debugPortSub.entryconfig(0,state="normal")
-                else:
-                    self.debugPortSub.entryconfig(0,state="disabled")
-                try:
-                    self.shelfPopup.tk_popup(event.x_root, event.y_root, 0)
-                finally:
-                    self.shelfPopup.grab_release()
+                self.debugPortSub.entryconfig(0,state="disabled")
+            try:
+                self.shelfPopup.tk_popup(event.x_root, event.y_root, 0)
+            finally:
+                self.shelfPopup.grab_release()
+                
+    def hasParent(self,node):
+        if not self.shelfTree.parent(node):
+            return False
+        return True
                     
     def isOpen(self,ip,port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -315,20 +402,30 @@ class F8BrowserGUI:
             return True
         except:
             return False
- 
-class guiThread (threading.Thread):
-    def __init__(self,app,ipaddr,slot,ipv6,json_file):
-        threading.Thread.__init__(self)
-        self.app = app
-        self.ipaddr=ipaddr
-        self.slot=slot
-        self.ipv6=ipv6
-        self.json_file=json_file
-    def run(self):
-        self.app.gui_handler(self.ipaddr,self.slot,self.ipv6,self.json_file)  
+        
+def get_title_for_hwnd(hwnd):
+    length = GetWindowTextLength(hwnd)+1
+    title = ctypes.create_unicode_buffer(length)
+    GetWindowText(hwnd,title,length)
+    return title.value
+      
+def get_hwnds_for_pid (pid):
+  hwnds = []
+  def callback (hwnd, lParam):
+    found_pid = ctypes.c_ulong()
+    if IsWindowVisible (hwnd) and IsWindowEnabled (hwnd):
+      result = ctypes.windll.user32.GetWindowThreadProcessId (hwnd, ctypes.byref(found_pid))
+      if found_pid.value == pid:
+        hwnds.append (hwnd)
+    return True  
+  EnumWindows (EnumWindowsProc(callback),0)
+  return hwnds
 
-if __name__ == '__main__':
+#@click.command()
+#@click.option('--debug',default=False)
+#def f8browserCli():
+if __name__ == "__main__":
     root = tk.Tk()
-    f8b = F8BrowserGUI(root)
+    f8b = F8BrowserGUI(root,debug=False)
     root.mainloop()
     os._exit(0)

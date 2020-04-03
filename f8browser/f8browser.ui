@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <interface>
   <object id="mainWindow" class="ttk.Frame">
-    <property name="height">200</property>
     <property name="padding">20</property>
-    <property name="width">200</property>
     <layout>
       <property name="column">0</property>
       <property name="propagate">True</property>
@@ -11,12 +9,11 @@
     </layout>
     <child>
       <object id="shelfTreeFrame" class="ttk.Frame">
-        <property name="height">200</property>
-        <property name="width">200</property>
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>
           <property name="row">2</property>
+          <property name="sticky">ns</property>
         </layout>
         <child>
           <object id="shelfTree" class="ttk.Treeview">
@@ -24,7 +21,8 @@
             <layout>
               <property name="column">0</property>
               <property name="propagate">True</property>
-              <property name="row">1</property>
+              <property name="row">0</property>
+              <property name="sticky">ns</property>
             </layout>
           </object>
         </child>
@@ -34,7 +32,7 @@
             <layout>
               <property name="column">1</property>
               <property name="propagate">True</property>
-              <property name="row">1</property>
+              <property name="row">0</property>
               <property name="sticky">ns</property>
             </layout>
           </object>
@@ -43,12 +41,11 @@
     </child>
     <child>
       <object id="toolFrame" class="ttk.Frame">
-        <property name="height">200</property>
-        <property name="width">200</property>
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>
           <property name="row">1</property>
+          <property name="sticky">ns</property>
         </layout>
         <child>
           <object id="addrEntry" class="ttk.Entry">
@@ -58,6 +55,7 @@
               <property name="column">1</property>
               <property name="propagate">True</property>
               <property name="row">0</property>
+              <property name="sticky">ew</property>
             </layout>
           </object>
         </child>
@@ -68,6 +66,7 @@
               <property name="column">0</property>
               <property name="propagate">True</property>
               <property name="row">0</property>
+              <property name="sticky">e</property>
             </layout>
           </object>
         </child>
@@ -116,10 +115,11 @@
         <property name="label" translatable="yes">DTE</property>
         <property name="tearoff">false</property>
         <child>
-          <object id="dteCli" class="tk.Menuitem.Command">
-            <property name="command_id_arg">false</property>
+          <object id="sshToDTE" class="tk.Menuitem.Command">
+            <property name="command">eventHandler</property>
+            <property name="command_id_arg">true</property>
             <property name="label" translatable="yes">CLI</property>
-            <property name="state">disabled</property>
+            <property name="state">normal</property>
           </object>
         </child>
         <child>

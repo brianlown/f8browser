@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object id="mainFrame" class="ttk.Frame">
+    <layout>
+      <property name="column">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+    </layout>
+    <child>
+      <object id="statusFrame" class="ttk.Frame">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">w</property>
+        </layout>
+        <child>
+          <object id="locationFrame" class="ttk.Labelframe">
+            <property name="height">200</property>
+            <property name="text" translatable="yes">Location</property>
+            <property name="width">200</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+            <child>
+              <object id="slotFrame" class="ttk.Frame">
+                <property name="height">200</property>
+                <property name="relief">sunken</property>
+                <property name="width">199</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">2</property>
+                  <property name="sticky">w</property>
+                </layout>
+                <child>
+                  <object id="Label_398" class="ttk.Label">
+                    <property name="text" translatable="yes">Unknown</property>
+                    <property name="textvariable">string:slotNumVar</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_400" class="ttk.Label">
+                    <property name="text" translatable="yes">Slot:</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object id="addressFrame" class="ttk.Frame">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+                <child>
+                  <object id="Label_17" class="ttk.Label">
+                    <property name="text" translatable="yes">IP Address:</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_1" class="ttk.Label">
+                    <property name="text" translatable="yes">Unknown</property>
+                    <property name="textvariable">string:shelfIPVar</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object id="pollingFrame" class="ttk.Labelframe">
+            <property name="height">200</property>
+            <property name="text" translatable="yes">Polling</property>
+            <property name="width">200</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="propagate">True</property>
+              <property name="row">0</property>
+              <property name="sticky">w</property>
+            </layout>
+            <child>
+              <object id="pollingCheck" class="ttk.Checkbutton">
+                <property name="offvalue">0</property>
+                <property name="onvalue">1</property>
+                <property name="takefocus">false</property>
+                <property name="text" translatable="yes">Enabled</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property name="sticky">w</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object id="mainNotebook" class="ttk.Notebook">
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+        </layout>
+        <child>
+          <object id="Tab_4" class="ttk.Notebook.Tab">
+            <property name="text" translatable="yes">AC1200 PMs</property>
+            <child>
+              <object id="Frame_65" class="ttk.Frame">
+                <property name="height">200</property>
+                <property name="padding">20</property>
+                <property name="width">200</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+                <child>
+                  <object id="Label_3" class="ttk.Label">
+                    <property name="text" translatable="yes">N1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_4" class="ttk.Label">
+                    <property name="text" translatable="yes">N2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_2" class="ttk.Label">
+                    <property name="text" translatable="yes">Q estimate avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_1" class="ttk.Entry">
+                    <property name="justify">center</property>
+                    <property name="textvariable">double:q_est_avg_pm_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_2" class="ttk.Entry">
+                    <property name="textvariable">double:q_est_avg_pm_2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_5" class="ttk.Label">
+                    <property name="text" translatable="yes">Q margin avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_3" class="ttk.Entry">
+                    <property name="textvariable">double:q_margin_avg_pm_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_4" class="ttk.Entry">
+                    <property name="textvariable">double:q_margin_avg_pm_2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_6" class="ttk.Label">
+                    <property name="text" translatable="yes">SNR Mod-A avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_5" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_6" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_7" class="ttk.Label">
+                    <property name="text" translatable="yes">SNR Mod-B avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_7" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_8" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_8" class="ttk.Label">
+                    <property name="text" translatable="yes">OSNR estimate avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_9" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_10" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_9" class="ttk.Label">
+                    <property name="text" translatable="yes">CD PM avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_11" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_12" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_10" class="ttk.Label">
+                    <property name="text" translatable="yes">DGD PM avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">7</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_13" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">7</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_14" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">7</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_11" class="ttk.Label">
+                    <property name="text" translatable="yes">2nd-order PMD avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">8</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_15" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">8</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_16" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">8</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_12" class="ttk.Label">
+                    <property name="text" translatable="yes">PDL avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">9</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_17" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">9</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_18" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">9</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_13" class="ttk.Label">
+                    <property name="text" translatable="yes">SOP change rate avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">10</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_19" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">10</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_20" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">10</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_14" class="ttk.Label">
+                    <property name="text" translatable="yes">Freq Offset est avg PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">11</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_21" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">11</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_22" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">11</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object id="Tab_1" class="ttk.Notebook.Tab">
+            <property name="text" translatable="yes">AC1200 BER</property>
+            <child>
+              <object id="Frame_1" class="ttk.Frame">
+                <property name="height">200</property>
+                <property name="padding">20</property>
+                <property name="width">200</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+                <child>
+                  <object id="Label_15" class="ttk.Label">
+                    <property name="text" translatable="yes">N1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_16" class="ttk.Label">
+                    <property name="text" translatable="yes">N2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_18" class="ttk.Label">
+                    <property name="text" translatable="yes">BER current</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_23" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_24" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_19" class="ttk.Label">
+                    <property name="text" translatable="yes">BER avg in PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_25" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_26" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_20" class="ttk.Label">
+                    <property name="text" translatable="yes">BER</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_27" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_28" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_21" class="ttk.Label">
+                    <property name="text" translatable="yes">BER max in PM</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_29" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_30" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_22" class="ttk.Label">
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">FEC current 
+uncorrected blocks</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_31" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_32" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Label_23" class="ttk.Label">
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">FEC accumulated uncorrected
+blocks in PM interval</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_33" class="ttk.Entry">
+                    <property name="text" translatable="yes">Entry_1</property>
+                    <layout>
+                      <property name="column">1</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object id="Entry_34" class="ttk.Entry">
+                    <property name="exportselection">true</property>
+                    <property name="text" translatable="yes">Entry_2</property>
+                    <property name="validate">none</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">6</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

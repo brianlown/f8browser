@@ -8,41 +8,51 @@
             "/opt/adva/aos/etc/framework/hal"
         ]
     },
+    "GUI Config":{
+        "116":"tflex.json",
+        "13":"qflex.json",
+        "94":"tflex.json"
+    },
+    "General":{
+        "Browser":"firefox",
+        "SCP":"WinSCP",
+        "SSH":"Putty"
+    },
     "SCP Clients":{
         "WinSCP":{
-            "Path":"C:\\Program Files (x86)\\WinSCP\\WinSCP.exe",
-            "Popen":[
-                "<Path>"
-            ]
+            "Path":"C:\\Program Files (x86)\\WinSCP\\WinSCP.exe"
         }
     },
     "SSH Clients":{
         "Putty":{
-            "Path":"C:\\Program Files\\Putty\\Putty.exe",
-            "Popen":[
-                "<Path>",
-                "-ssh",
-                "-P",
-                "<Port>",
-                "root@<IP>"
-            ]
+            "Path":"C:\\Program Files\\Putty\\Putty.exe"
         },
         "TeraTerm":{
-            "Path":"C:\\Program Files (x86)\\teraterm\\teraterm.exe",
-            "Popen":[]
+            "Path":"C:\\Program Files (x86)\\teraterm\\teraterm.exe"
         }
     },
+    "Scripts":{
+        "Enable Debug":[
+            "execute debug-system exec-cmd cmd \"/shell/enable-ssh\"",
+            "execute debug-system exec-cmd cmd \"/shell/enable-ssh\"",
+            "execute debug-system exec-cmd cmd \"/shell/cleanup\""
+        ],
+        "Start DTE":[
+            "aosCoreDteConsole",
+            "go debug/aosFwHal/adva.hbmc\t"
+        ]
+    },
     "Web Browsers":{
-        "Chrome":{
-            "Path":""
+        "chrome":{
+            "Path":"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s"
         },
-        "Firefox":{
+        "firefox":{
             "Path":"C:/Program Files/Mozilla Firefox/firefox.exe %s"
         }
     },
-	
     "knownShelfIP":[
-        "172.16.33.171"
+        "172.16.33.171",
+        "172.16.34.150"
     ],
     "uhiLookup":{
         "1":"SH12R",

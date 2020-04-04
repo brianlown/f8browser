@@ -1,6 +1,7 @@
 README.rst
 setup.py
 f8browser/__init__.py
+f8browser/__main__.py
 f8browser/config.json
 f8browser/f8browser.py
 f8browser/f8browser.ui

@@ -65,8 +65,8 @@ description = ""
 develop = true
 name = "dtegui"
 optional = false
-python-versions = ">=3.8,<4.0"
-version = "0.1.0"
+python-versions = ">=3.4,<4.0"
+version = "0.2.0"
 
 [package.source]
 reference = ""
@@ -207,14 +207,13 @@ category = "main"
 description = ""
 name = "sshexpect"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = ">=3.4,<4.0"
 version = "0.2.0"
 
 [package.source]
-reference = "1fac17a89fe32304a4c0cce68f64671ed0b6ad03"
+reference = "65dcc31005070f6ab44f7408f296e34b912c0775"
 type = "git"
 url = "https://github.com/brianlown/sshexpect.git"
-
 [metadata]
 content-hash = "a56430dfcd4b1c50291f28d23ceb518cfb755d3b6a8bd0c90527a62a9c1390db"
 python-versions = "^3.8"

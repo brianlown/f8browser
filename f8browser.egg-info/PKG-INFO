@@ -8,4 +8,4 @@ Author-email: 62453448+brianlown@users.noreply.github.com
 License: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
-Requires-Python: >=3.8,<4.0
+Requires-Python: >=3.4,<4.0

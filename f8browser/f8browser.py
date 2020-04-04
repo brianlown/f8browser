@@ -421,11 +421,13 @@ def get_hwnds_for_pid (pid):
   EnumWindows (EnumWindowsProc(callback),0)
   return hwnds
 
-#@click.command()
-#@click.option('--debug',default=False)
-#def f8browserCli():
-if __name__ == "__main__":
+@click.command()
+@click.option('--debug',default=False)
+def f8browserCli():
     root = tk.Tk()
-    f8b = F8BrowserGUI(root,debug=False)
+    f8b = F8BrowserGUI(root,debug=debug)
     root.mainloop()
     os._exit(0)
+    
+if __name__ == "__main__":
+    f8browserCli()

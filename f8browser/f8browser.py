@@ -26,10 +26,10 @@ DBG_USERNAME = "debug"
 CLI_PASSWORD = "CHGME.1a"
 SSH_DBG = 614
 SSH_CLI = 22
-ECM_DTE_PROMPT = ['root@ecm>','root@tecm>']
+ECM_DTE_PROMPT = ['root@.+>']
 LINUX_PROMPT = "~ # "
-CLI_PROMPT = 'admin@FSP3000C> '
-DBG_PROMPT = 'debug@FSP3000C> '
+CLI_PROMPT = ['admin@.+> ','admin@.+# ']
+DBG_PROMPT = ['debug@.+> ','debug@.+# ']
 SSH_TIMEOUT = 5
 
 EnumWindows = ctypes.windll.user32.EnumWindows
@@ -115,6 +115,7 @@ class F8BrowserGUI:
     def ssh_expect(self,ssh,prompt):
         try:
             ssh.expect(prompt)
+            if self.debug:print(ssh.before)
         except:
             mb =  messagebox.showerror(title='Error',message='No response from SSH command.'%ip)
             ssh.close()
@@ -158,6 +159,9 @@ class F8BrowserGUI:
         if self.isOpen(ip,SSH_DBG):
             self.shelfTree.insert(node,'end',text="")
             self.shelfTree.set(node,'port',SSH_DBG)
+            return
+            
+        self.shelfTree.set(node,'port',"")
         
     def eventHandler(self,objID):
         
@@ -175,7 +179,7 @@ class F8BrowserGUI:
                 slot= shelfTree.item(slotid)['values'][0]
                 cuhi= shelfTree.item(slotid)['values'][1]
                 ipv6= shelfTree.item(slotid)['values'][2]
-                port = slot+1000
+                port = shelfTree.item(slotid)['values'][3]
             else:
                 nodeid = item
                 slot = ""
@@ -207,7 +211,8 @@ class F8BrowserGUI:
                 self.enableDebug(shelfip,nodeid)
                 continue
             
-            if port > 1000:
+            if port == "":
+                port = 1000+slot
                 self.addPortForward(shelfip,port,ipv6,slotid)
                 
             if objID == "addPort": continue
@@ -243,7 +248,7 @@ class F8BrowserGUI:
                 if cuhi in configDict["GUI Config"].keys():
                     guiConfig=configDict["GUI Config"][cuhi]
                     top=tk.Toplevel(self.master)
-                    dg.dtegui(top,shelfip,slot,cuhi,ipv6,LIB_DIR+guiConfig,debug=False)
+                    dg.dtegui(top,shelfip,slot,cuhi,ipv6,LIB_DIR+guiConfig,debug=self.debug)
                     continue
                 mb = messagebox.showerror(title='Error',message='No GUI config for CUHI:{}.'.format(cuhi))
                 continue
@@ -289,17 +294,21 @@ class F8BrowserGUI:
             return
         
     def enableDebug(self,ip,nodeid):
-        script = configDict["Scripts"]["Enable Debug"]
+        script = self.configDict["Scripts"]["Enable Debug"]
         try:
-            ssh = self.ssh_spawn(shelfip,CLI_USERNAME,SSH_CLI,password=CLI_PASSWORD)
+            ssh = self.ssh_spawn(ip,CLI_USERNAME,SSH_CLI,password=CLI_PASSWORD)
+            self.ssh_expect(ssh,CLI_PROMPT)
+            ssh.sendln("configure")
+            self.ssh_expect(ssh,CLI_PROMPT)
             ssh.sendln("set security user debug role Debug new-password "+CLI_PASSWORD)
             self.ssh_expect(ssh,CLI_PROMPT)
             ssh.close()
-            ssh = self.ssh_spawn(shelfip,DBG_USERNAME,SSH_CLI,password=CLI_PASSWORD)
+            ssh = self.ssh_spawn(ip,DBG_USERNAME,SSH_CLI,password=CLI_PASSWORD)
             self.ssh_expect_script(ssh,DBG_PROMPT,script)
             ssh.close()
             self.shelfTree.set(nodeid,'port',SSH_DBG)
         except:
+            mb = messagebox.showerror(title='Error',message='Unable to enable debug port!')
             return
         
     def getShelfTreeInfo(self,shelfip):
@@ -355,6 +364,7 @@ class F8BrowserGUI:
             return
         
     def popup(self,event):
+        time.sleep(.1)
         iid = self.shelfTree.identify_row(event.y)
         if not iid: return
         selection = self.shelfTree.selection()

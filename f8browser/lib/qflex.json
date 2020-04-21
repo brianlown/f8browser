@@ -888,7 +888,7 @@
 		
 	"2HEX<>2COMPBY256" :
 		{
-		"Decode" : "round(twos_complement((val[0]+val[1]),16)/256,1)"
+		"Decode" : "round(signed((val[0]+val[1]),16)/256,1)"
 		},
 		
 	"DEC<>DOUBLEBY1000":

@@ -51,13 +51,14 @@ class F8BrowserGUI:
   
         #3: Create the widget using a master as parent
         self.mainwindow = builder.get_object('mainWindow', master)
+        self.mainwindow.pack(fill='both',expand=True)
         self.master=master
         master.title("F8 Browser")
         master.iconbitmap(LIB_DIR+"adva.ico")
         self.newIPAddr = builder.tkvariables.__getitem__('newIPAddr')
         #self.ahk = AHK()
 
-        shelfTree = self.shelfTree = builder.get_object('shelfTree')        
+        shelfTree = self.shelfTree = builder.get_object('shelfTree')    
         self.treeScroll = builder.get_object('shelfTreeScroll')
         shelfTree.configure(yscrollcommand=self.treeScroll.set)
         self.treeScroll.configure(command=self.shelfTree.yview)

@@ -51,6 +51,7 @@
         }
     },
     "knownShelfIP":[
+        "172.16.33.171"
     ],
     "uhiLookup":{
         "1":"SH12R",

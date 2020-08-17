@@ -15,252 +15,247 @@
 
 "Variables" :
 	{
-	"qsfp1_low_power" :
-		{
-		"Objects" :["Radiobutton_18","Radiobutton_19"],
+    "qsfp1_name" :
+        {
+		"Objects" : "en_c1_name",
 		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP1_LP","Write"],
-		"Group" : ["QSFP_LP","qsfp_apply_all"]
+		"VarInit" : "N/A",
+		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp1_reset" :
+        
+	"qsfp1_hi_pwr" :
 		{
-		"Objects" : ["Radiobutton_20","Radiobutton_21"],
-		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP1_RESET","Write"],
-		"Group" : ["QSFP_RESET","qsfp_apply_all"]
-		},
-	
-	"qsfp1_tx_en" :
-		{
-		"Objects" : "Checkbutton_107",
+		"Objects" : "cb_c1_hipwr",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable",
-		"EventCmd" : ["QSFP1_TX_EN","Write"],
-		"Group" : ["QSFP_TX_EN","qsfp_apply_all"]
+		"EventCmd" : ["QSFP1_HP","Write"],
+		"Group" : ["QSFP_HP","qsfp_apply_all"]
 		},
-		
-	"qsfp1_present" :
+	
+	"qsfp1_tx_on" :
 		{
-		"Objects" : "Checkbutton_68",
+		"Objects" : "cb_c1_txon",
 		"VarType" : "integer",
 		"VarInit" : 0,
-		"Config" : "variable=variable",
-		"InitRead" : "QSFP1_PRESENT"
+		"EventCmd" : ["QSFP1_TXON","Write"],
+		"Config" :  "variable=variable",
+		"Group" : ["QSFP_TXON","qsfp_apply_all"]
 		},
+    
+     "qsfp1_los" :
+		{
+		"Objects" : "cb_c1_los",
+		"VarType" : "integer",
+		"VarInit" : 0,
+		"Config" : "variable=variable"
+		},
+
 		
 	"qsfp1_rx_pwr" :
 		{
-		"Objects" : "Entry_95",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c1_rxpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
 	
 	"qsfp1_tx_pwr" :
 		{
-		"Objects" : "Entry_96",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c1_txpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
 		
 	"qsfp1_temp" :
 		{
 		"Objects" : "Entry_65",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"VarType" : "string",
+		"VarInit" : "0.0",
 		"Config" : "textvariable=variable"
 		},
-		
-	"qsfp2_low_power" :
-		{
-		"Objects" :["Radiobutton_22","Radiobutton_23"],
+        
+	"qsfp2_name" :
+        {
+		"Objects" : "en_c2_name",
 		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP2_LP","Write"],
-		"Group" : ["QSFP_LP","qsfp_apply_all"]
+		"VarInit" : "N/A",
+		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp2_reset" :
+        
+	"qsfp2_hi_pwr" :
 		{
-		"Objects" : ["Radiobutton_24","Radiobutton_25"],
-		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP2_RESET","Write"],
-		"Group" : ["QSFP_RESET","qsfp_apply_all"]
-		},
-	
-	"qsfp2_tx_en" :
-		{
-		"Objects" : "Checkbutton_109",
+		"Objects" : "cb_c2_hipwr",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable",
-		"EventCmd" : ["QSFP2_TX_EN","Write"],
-		"Group" : ["QSFP_TX_EN","qsfp_apply_all"]
+		"EventCmd" : ["QSFP2_HP","Write"],
+		"Group" : ["QSFP_HP","qsfp_apply_all"]
 		},
-		
-	"qsfp2_present" :
+	
+	"qsfp2_tx_on" :
 		{
-		"Objects" : "Checkbutton_92",
+		"Objects" : "cb_c2_txon",
+		"VarType" : "integer",
+		"VarInit" : 0,
+		"EventCmd" : ["QSFP2_TXON","Write"],
+		"Config" :  "variable=variable",
+		"Group" : ["QSFP_TXON","qsfp_apply_all"]
+		},
+    
+     "qsfp2_los" :
+		{
+		"Objects" : "cb_c2_los",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable"
 		},
+
 		
 	"qsfp2_rx_pwr" :
 		{
-		"Objects" : "Entry_97",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c2_rxpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
 	
 	"qsfp2_tx_pwr" :
 		{
-		"Objects" : "Entry_98",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c2_txpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
-	
+        
 	"qsfp2_temp" :
 		{
 		"Objects" : "Entry_80",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"VarType" : "string",
+		"VarInit" : "0.0",
 		"Config" : "textvariable=variable"
 		},
-		
-	"qsfp3_low_power" :
-		{
-		"Objects" :["Radiobutton_34","Radiobutton_35"],
+    
+    "qsfp3_name" :
+        {
+		"Objects" : "en_c3_name",
 		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP3_LP","Write"],
-		"Group" : ["QSFP_LP","qsfp_apply_all"]
+		"VarInit" : "N/A",
+		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp3_reset" :
+        
+	"qsfp3_hi_pwr" :
 		{
-		"Objects" : ["Radiobutton_36","Radiobutton_37"],
-		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP3_RESET","Write"],
-		"Group" : ["QSFP_RESET","qsfp_apply_all"]
-		},
-	
-	"qsfp3_tx_en" :
-		{
-		"Objects" : "Checkbutton_113",
+		"Objects" : "cb_c3_hipwr",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable",
-		"EventCmd" : ["QSFP3_TX_EN","Write"],
-		"Group" : ["QSFP_TX_EN","qsfp_apply_all"]
+		"EventCmd" : ["QSFP3_HP","Write"],
+		"Group" : ["QSFP_HP","qsfp_apply_all"]
 		},
-		
-	"qsfp3_present" :
+	
+	"qsfp3_tx_on" :
 		{
-		"Objects" : "Checkbutton_95",
+		"Objects" : "cb_c3_txon",
+		"VarType" : "integer",
+		"VarInit" : 0,
+		"EventCmd" : ["QSFP3_TXON","Write"],
+		"Config" :  "variable=variable",
+		"Group" : ["QSFP_TXON","qsfp_apply_all"]
+		},
+    
+     "qsfp3_los" :
+		{
+		"Objects" : "cb_c3_los",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable"
 		},
-		
+	
 	"qsfp3_rx_pwr" :
 		{
-		"Objects" : "Entry_103",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c3_rxpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
 	
 	"qsfp3_tx_pwr" :
 		{
-		"Objects" : "Entry_104",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c3_txpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp3_temp" :
+    
+    "qsfp3_temp" :
 		{
 		"Objects" : "Entry_81",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"VarType" : "string",
+		"VarInit" : "0.0",
 		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp4_low_power" :
-		{
-		"Objects" :["Radiobutton_38","Radiobutton_39"],
+        
+	"qsfp4_name" :
+        {
+		"Objects" : "en_c4_name",
 		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP4_LP","Write"],
-		"Group" : ["QSFP_LP","qsfp_apply_all"]
+		"VarInit" : "N/A",
+		"Config" : "textvariable=variable"
 		},
-	
-	"qsfp4_reset" :
+        
+	"qsfp4_hi_pwr" :
 		{
-		"Objects" : ["Radiobutton_40","Radiobutton_41"],
-		"VarType" : "string",
-		"VarInit" : "0",
-		"Config" : ["value='1',variable=variable","value='0',variable=variable"],
-		"EventCmd" : ["QSFP4_RESET","Write"],
-		"Group" : ["QSFP_RESET","qsfp_apply_all"]
-		},
-	
-	"qsfp4_tx_en" :
-		{
-		"Objects" : "Checkbutton_114",
+		"Objects" : "cb_c4_hipwr",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable",
-		"EventCmd" : ["QSFP4_TX_EN","Write"],
-		"Group" : ["QSFP_TX_EN","qsfp_apply_all"]
+		"EventCmd" : ["QSFP4_HP","Write"],
+		"Group" : ["QSFP_HP","qsfp_apply_all"]
 		},
-		
-	"qsfp4_present" :
+	
+	"qsfp4_tx_on" :
 		{
-		"Objects" : "Checkbutton_96",
+		"Objects" : "cb_c4_txon",
+		"VarType" : "integer",
+		"VarInit" : 0,
+		"EventCmd" : ["QSFP4_TXON","Write"],
+		"Config" :  "variable=variable",
+		"Group" : ["QSFP_TXON","qsfp_apply_all"]
+		},
+    
+     "qsfp4_los" :
+		{
+		"Objects" : "cb_c4_los",
 		"VarType" : "integer",
 		"VarInit" : 0,
 		"Config" : "variable=variable"
 		},
+
 		
 	"qsfp4_rx_pwr" :
 		{
-		"Objects" : "Entry_105",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c4_rxpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
 	
 	"qsfp4_tx_pwr" :
 		{
-		"Objects" : "Entry_106",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"Objects" : "en_c4_txpwr",
+		"VarType" : "string",
+		"VarInit" : "",
 		"Config" : "textvariable=variable"
 		},
-	
+		
+
 	"qsfp4_temp" :
 		{
 		"Objects" : "Entry_86",
-		"VarType" : "double",
-		"VarInit" : 0,
+		"VarType" : "string",
+		"VarInit" : "0.0",
 		"Config" : "textvariable=variable"
 		},
 			
@@ -370,51 +365,39 @@
 	
 "Commands" :
 	{
-	"QSFP1_LP" :
+    
+    "QSFP1_MSA" :
 		{
-		"Var" : "qsfp1_low_power",
+		"Var" : ["qsfp1_name","qsfp1_hi_pwr","qsfp1_los","qsfp1_tx_on"],
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "59"
+			"Name" :"MSA",
+			"Index" : "0"
 			},
-		"InitGroup" : "Start"
+        "Codec" : ["","BOOL<>INT","BOOL<>INT","BOOL<>INT"],
+        "Errors" : ["N/A",0,0,0],
+        "PollGroup" : "Clients",
+        "InitGroup" : "Start"
 		},
-		
-	"QSFP1_RESET" :
+        
+	"QSFP1_HP" :
 		{
-		"Var" : "qsfp1_reset",
+		"Var" : "qsfp1_hi_pwr",
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "60"
-			},
-		"InitGroup" : "Start"
+			"Name" :"MSA_HIPWR",
+			"Index" : "0"
+			}
 		},
 	
-	"QSFP1_TX_EN" :
+	"QSFP1_TXON" :
 		{
-		"Var" : "qsfp1_tx_en",
+		"Var" : "qsfp1_tx_on",
 		"Macro" :
 			{
-			"Name" : "I2C_8",
-			"Index" : "14",
-			"Address" : "86"
-			},
-		"Codec" : "4BITS<>INT",
-		"InitGroup" : "Start",
-		"PollGroup" : "Clients"
-		},
-
-	"QSFP1_PRESENT" :
-		{
-		"Var" : "qsfp1_present",
-		"Macro" : 
-			{
-			"Name" :"GPIO",
-			"Index" : "57"
-			},
-		"PollGroup" : "Clients"
+			"Name" : "MSA_TXON",
+			"Index" : "0"
+			}
 		},
 		
 	"QSFP1_RX_PWR" :
@@ -422,12 +405,10 @@
 		"Var" : "qsfp1_rx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "14",
-			"Address" : "34"
+			"Name" :"MSA_RXPWR",
+			"Index" : "0"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP1_TX_PWR" :
@@ -435,12 +416,10 @@
 		"Var" : "qsfp1_tx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "14",
-			"Address" : "50"
+			"Name" :"MSA_TXPWR",
+			"Index" : "0"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP1_TEMP" :
@@ -448,59 +427,45 @@
 		"Var" : "qsfp1_temp",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "14",
-			"Address" : "22"
+			"Name" :"MSA_TEMP",
+			"Index" : "0"
 			},
-		"PollGroup" : "System Monitors",
-		"Codec" : "2HEX<>2COMPBY256"
+        "Errors" : "N/A",
+		"PollGroup" : "System Monitors"
 		},
 		
-	"QSFP2_LP" :
+    "QSFP2_MSA" :
 		{
-		"Var" : "qsfp2_low_power",
+		"Var" : ["qsfp2_name","qsfp2_hi_pwr","qsfp2_los","qsfp2_tx_on"],
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "64"
+			"Name" :"MSA",
+			"Index" : "1"
 			},
-		"InitGroup" : "Start"
+        "Codec" : ["","BOOL<>INT","BOOL<>INT","BOOL<>INT"],
+        "Errors" : ["N/A",0,0,0],
+        "PollGroup" : "Clients",
+        "InitGroup" : "Start"
 		},
-		
-	"QSFP2_RESET" :
+        
+	"QSFP2_HP" :
 		{
-		"Var" : "qsfp2_reset",
+		"Var" : "qsfp2_hi_pwr",
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "65"
-			},
-		"InitGroup" : "Start"
+			"Name" :"MSA_HIPWR",
+			"Index" : "1"
+			}
 		},
 	
-	"QSFP2_TX_EN" :
+	"QSFP2_TXON" :
 		{
-		"Var" : "qsfp2_tx_en",
+		"Var" : "qsfp2_tx_on",
 		"Macro" :
 			{
-			"Name" : "I2C_8",
-			"Index" : "15",
-			"Address" : "86"
-			},
-		"Codec" : "4BITS<>INT",
-		"InitGroup" : "Start",
-		"PollGroup" : "Clients"
-		},
-
-	"QSFP2_PRESENT" :
-		{
-		"Var" : "qsfp2_present",
-		"Macro" : 
-			{
-			"Name" :"GPIO",
-			"Index" : "62"
-			},
-		"PollGroup" : "Clients"
+			"Name" : "MSA_TXON",
+			"Index" : "1"
+			}
 		},
 		
 	"QSFP2_RX_PWR" :
@@ -508,12 +473,10 @@
 		"Var" : "qsfp2_rx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "15",
-			"Address" : "34"
+			"Name" :"MSA_RXPWR",
+			"Index" : "1"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP2_TX_PWR" :
@@ -521,12 +484,10 @@
 		"Var" : "qsfp2_tx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "15",
-			"Address" : "50"
+			"Name" :"MSA_TXPWR",
+			"Index" : "1"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP2_TEMP" :
@@ -534,59 +495,45 @@
 		"Var" : "qsfp2_temp",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "15",
-			"Address" : "22"
+			"Name" :"MSA_TEMP",
+			"Index" : "1"
 			},
-		"PollGroup" : "System Monitors",
-		"Codec" : "2HEX<>2COMPBY256"
-		},
-		
-	"QSFP3_LP" :
-		{
-		"Var" : "qsfp3_low_power",
-		"Macro" : 
-			{
-			"Name" :"GPIO",
-			"Index" : "69"
-			},
-		"InitGroup" : "Start"
-		},
-		
-	"QSFP3_RESET" :
-		{
-		"Var" : "qsfp3_reset",
-		"Macro" : 
-			{
-			"Name" :"GPIO",
-			"Index" : "70"
-			},
-		"InitGroup" : "Start"
+        "Errors" : "N/A",
+		"PollGroup" : "System Monitors"
 		},
 	
-	"QSFP3_TX_EN" :
+    "QSFP3_MSA" :
 		{
-		"Var" : "qsfp3_tx_en",
-		"Macro" :
-			{
-			"Name" : "I2C_8",
-			"Index" : "16",
-			"Address" : "86"
-			},
-		"Codec" : "4BITS<>INT",
-		"InitGroup" : "Start",
-		"PollGroup" : "Clients"
-		},
-
-	"QSFP3_PRESENT" :
-		{
-		"Var" : "qsfp3_present",
+		"Var" : ["qsfp3_name","qsfp3_hi_pwr","qsfp3_los","qsfp3_tx_on"],
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "67"
+			"Name" :"MSA",
+			"Index" : "2"
 			},
-		"PollGroup" : "Clients"
+        "Codec" : ["","BOOL<>INT","BOOL<>INT","BOOL<>INT"],
+        "Errors" : ["N/A",0,0,0],
+        "PollGroup" : "Clients",
+        "InitGroup" : "Start"
+		},
+        
+	"QSFP3_HP" :
+		{
+		"Var" : "qsfp3_hi_pwr",
+		"Macro" : 
+			{
+			"Name" :"MSA_HIPWR",
+			"Index" : "2"
+			}
+		},
+	
+	"QSFP3_TXON" :
+		{
+		"Var" : "qsfp3_tx_on",
+		"Macro" :
+			{
+			"Name" : "MSA_TXON",
+			"Index" : "2"
+			}
 		},
 		
 	"QSFP3_RX_PWR" :
@@ -594,12 +541,10 @@
 		"Var" : "qsfp3_rx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "16",
-			"Address" : "34"
+			"Name" :"MSA_RXPWR",
+			"Index" : "2"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP3_TX_PWR" :
@@ -607,12 +552,10 @@
 		"Var" : "qsfp3_tx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "16",
-			"Address" : "50"
+			"Name" :"MSA_TXPWR",
+			"Index" : "2"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP3_TEMP" :
@@ -620,59 +563,45 @@
 		"Var" : "qsfp3_temp",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "16",
-			"Address" : "22"
+			"Name" :"MSA_TEMP",
+			"Index" : "2"
 			},
-		"PollGroup" : "System Monitors",
-		"Codec" : "2HEX<>2COMPBY256"
+        "Errors" : "N/A",
+		"PollGroup" : "System Monitors"
 		},
-		
-	"QSFP4_LP" :
+     
+    "QSFP4_MSA" :
 		{
-		"Var" : "qsfp4_low_power",
+		"Var" : ["qsfp4_name","qsfp4_hi_pwr","qsfp4_los","qsfp4_tx_on"],
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "74"
+			"Name" :"MSA",
+			"Index" : "3"
 			},
-		"InitGroup" : "Start"
+        "Codec" : ["","BOOL<>INT","BOOL<>INT","BOOL<>INT"],
+        "Errors" : ["N/A",0,0,0],
+        "PollGroup" : "Clients",
+        "InitGroup" : "Start"
 		},
-		
-	"QSFP4_RESET" :
+        
+	"QSFP4_HP" :
 		{
-		"Var" : "qsfp4_reset",
+		"Var" : "qsfp4_hi_pwr",
 		"Macro" : 
 			{
-			"Name" :"GPIO",
-			"Index" : "75"
-			},
-		"InitGroup" : "Start"
+			"Name" :"MSA_HIPWR",
+			"Index" : "3"
+			}
 		},
 	
-	"QSFP4_TX_EN" :
+	"QSFP4_TXON" :
 		{
-		"Var" : "qsfp4_tx_en",
+		"Var" : "qsfp4_tx_on",
 		"Macro" :
 			{
-			"Name" : "I2C_8",
-			"Index" : "17",
-			"Address" : "86"
-			},
-		"Codec" : "4BITS<>INT",
-		"InitGroup" : "Start",
-		"PollGroup" : "Clients"
-		},
-
-	"QSFP4_PRESENT" :
-		{
-		"Var" : "qsfp4_present",
-		"Macro" : 
-			{
-			"Name" :"GPIO",
-			"Index" : "72"
-			},
-		"PollGroup" : "Clients"
+			"Name" : "MSA_TXON",
+			"Index" : "3"
+			}
 		},
 		
 	"QSFP4_RX_PWR" :
@@ -680,12 +609,10 @@
 		"Var" : "qsfp4_rx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "17",
-			"Address" : "34"
+			"Name" :"MSA_RXPWR",
+			"Index" : "3"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
 		
 	"QSFP4_TX_PWR" :
@@ -693,26 +620,24 @@
 		"Var" : "qsfp4_tx_pwr",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "17",
-			"Address" : "50"
+			"Name" :"MSA_TXPWR",
+			"Index" : "3"
 			},
-		"PollGroup" : "Clients",
-		"Codec" : "2HEX8<>dBm"
+		"PollGroup" : "Clients"
 		},
-		
+     
 	"QSFP4_TEMP" :
 		{
 		"Var" : "qsfp4_temp",
 		"Macro" : 
 			{
-			"Name" :"I2C_16",
-			"Index" : "17",
-			"Address" : "22"
+			"Name" :"MSA_TEMP",
+			"Index" : "3"
 			},
-		"PollGroup" : "System Monitors",
-		"Codec" : "2HEX<>2COMPBY256"
+        "Errors" : "N/A",
+		"PollGroup" : "System Monitors"
 		},
+		
 		
 	"ANALOG" :
 		{
@@ -865,7 +790,50 @@
 		"Splitchar" : " ",
 		"Trigger"   : "mA",
 		"Location"  : [1,0]
-		}
+		},
+        
+    "MSA_TEMP" :
+        {
+        "Read" : "msa <Index> temp short",
+        "Splitchar" : " ",
+        "Trigger" : "Value",
+        "Location" : [1,2]
+        },
+        
+    "MSA" :
+        {
+        "Read" : "msa <Index>",
+        "Splitchar" : " ",
+        "Trigger" : ["unitName","Pwr.","00000000h","00008000h"],
+        "Location" : [[[1,0]],[[2,0]],[[3,0]],[[3,0]]]
+        },
+    
+    "MSA_HIPWR" :
+        {
+        "Write": "msa <Index> hpwr_set <Value>"
+        },
+    
+    "MSA_TXON" :
+        {
+        "Write": "msa <Index> tx_on <Value>"
+        },
+    
+    "MSA_RXPWR" :
+        {
+        "Read" : "msa <Index> opr short",
+        "Splitchar" : " ",
+        "Trigger" : "00000000h", 
+        "Location" : [1,2]
+        },
+        
+    "MSA_TXPWR" :
+        {
+        "Read" : "msa <Index> opt short",
+        "Splitchar" : " ",
+        "Trigger" : "00008000h",
+        "Location" : [1,2]
+        }
+        
 	},
 	
 "Codecs" :
@@ -898,6 +866,10 @@
 	"DEC<>DOUBLEBY10":
 		{
 		"Decode" : "int(val[0])/10"
-		}
+		},
+    "BOOL<>INT":
+        {
+        "Decode" : "distutils.util.strtobool(val[0].capitalize())"
+        }
 	}
 }

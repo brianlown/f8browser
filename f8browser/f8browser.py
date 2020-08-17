@@ -249,7 +249,7 @@ class F8BrowserGUI:
                 if cuhi in configDict["GUI Config"].keys():
                     guiConfig=configDict["GUI Config"][cuhi]
                     top=tk.Toplevel(self.master)
-                    dg.dtegui(top,shelfip,slot,cuhi,ipv6,LIB_DIR+guiConfig,debug=self.debug)
+                    dg.dtegui(top,shelfip,slot,cuhi,ipv6,LIB_DIR+guiConfig,debug=self.debug,ssh_echo=self.debug)
                     continue
                 mb = messagebox.showerror(title='Error',message='No GUI config for CUHI:{}.'.format(cuhi))
                 continue
@@ -434,7 +434,7 @@ def get_hwnds_for_pid (pid):
 
 @click.command()
 @click.option('--debug',default=False)
-def f8browserCli():
+def f8browserCli(debug):
     root = tk.Tk()
     f8b = F8BrowserGUI(root,debug=debug)
     root.mainloop()
